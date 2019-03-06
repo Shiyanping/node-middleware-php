@@ -1,3 +1,5 @@
+// 测试将import 编译成 commonjs的规范
+// import koa from 'koa';
 const Koa = require('koa');
 const app = new Koa();
 // 指定 koa 静态资源

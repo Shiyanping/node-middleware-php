@@ -1,4 +1,4 @@
-const { join } = require('path');
+import { join } from 'path';
 const _ = require('lodash');
 
 let config = {
@@ -6,21 +6,21 @@ let config = {
   staticDir: join(__dirname, '..', '/assets')
 };
 
-if(process.env.NODE_ENV == 'development') {
+if (process.env.NODE_ENV == 'development') {
   const localConfig = {
     port: 8888,
     cache: false,
     baseUrl: 'http://localhost/yii-php/basic/web/index.php'
-  }
+  };
   config = _.extend(config, localConfig);
 }
 
-if(process.env.NODE_ENV == 'production') {
+if (process.env.NODE_ENV == 'production') {
   const prodConfig = {
     port: 3000,
     cache: 'memory',
     baseUrl: 'http://localhost/yii-php/basic/web/index.php'
-  }
+  };
   config = _.extend(config, prodConfig);
 }
 
