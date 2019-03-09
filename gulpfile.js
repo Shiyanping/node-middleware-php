@@ -9,23 +9,15 @@ const entry = './src/server/**/*.js';
 
 // 开发环境
 function builddev() {
-  return gulp.watch(
-    entry,
-    {
-      ignoreInitial: false
-    },
-    function() {
-      gulp
-        .src(entry)
-        .pipe(
-          babel({
-            babelrc: false,
-            plugins: ['transform-es2015-modules-commonjs']
-          })
-        )
-        .pipe(gulp.dest('dist'));
-    }
-  );
+  return gulp
+    .src(entry)
+    .pipe(
+      babel({
+        babelrc: false,
+        plugins: ['transform-es2015-modules-commonjs']
+      })
+    )
+    .pipe(gulp.dest('dist'));
 }
 
 // 上线环境

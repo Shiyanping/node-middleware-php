@@ -1,13 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.2.1/css/bootstrap.css">
     {% block head %}{% endblock %}
-  </head>
-  <body>
-    {% block content %}{% endblock %}
-    <script src="/scripts/utils.js"></script>
+</head>
+
+<body>
+    {% block navigation %}{% endblock %}
+    <div class="container" id="app">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="https://cdn.bootcss.com/x-tag/2.0.9-alpha/x-tag-polyfilled.min.js"></script>
+    <script src="https://cdn.bootcss.com/x-tag/2.0.9-alpha/plugins/events/tap.js"></script>
+    <!-- 代理页面 a 标签，将页面设置成局部刷新，减少资源重复请求 -->
+    <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.staticfile.org/jquery.pjax/2.0.1/jquery.pjax.js"></script>
+    <script>
+        $(document).pjax('a', '#app');
+    </script>
     {% block scripts %}{% endblock %}
-  </body>
+</body>
+
 </html>

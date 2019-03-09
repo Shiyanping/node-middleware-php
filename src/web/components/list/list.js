@@ -1,7 +1,7 @@
 import './list.css';
 const list = {
   init() {
-    // 组件对应的入口文件
+    console.log('list组件对应的入口文件');
   }
 };
 export default list;

@@ -37,7 +37,7 @@ app.context.render = co.wrap(
 app.use(serve(config.staticDir));
 
 // 容错机制
-errorHandle.error(app, logger);
+// errorHandle.error(app, logger);
 
 // 注入路由
 require('./controllers')(app);
