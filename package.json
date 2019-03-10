@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/Shiyanping/node-middleware-php#readme",
   "dependencies": {
+    "awilix": "^4.2.1",
+    "awilix-koa": "^3.1.0",
     "cheerio": "^1.0.0-rc.2",
     "co": "^4.6.0",
     "cross-env": "^5.2.0",
