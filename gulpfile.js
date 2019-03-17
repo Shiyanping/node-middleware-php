@@ -14,7 +14,15 @@ function builddev() {
     .pipe(
       babel({
         babelrc: false,
-        plugins: ['transform-es2015-modules-commonjs']
+        plugins: [
+          [
+            '@babel/plugin-proposal-decorators',  // 编译装饰器
+            {
+              legacy: true
+            }
+          ],
+          'transform-es2015-modules-commonjs'
+        ]
       })
     )
     .pipe(gulp.dest('dist'));
@@ -28,7 +36,15 @@ function buildprod() {
       babel({
         ignore: ['./src/server/config/*.js'],
         babelrc: false,
-        plugins: ['transform-es2015-modules-commonjs']
+        plugins: [
+          [
+            '@babel/plugin-proposal-decorators',
+            {
+              legacy: true
+            }
+          ],
+          'transform-es2015-modules-commonjs'
+        ]
       })
     )
     .pipe(gulp.dest('dist'));

@@ -21,6 +21,19 @@ const config = require('./config');
 import { asClass, asValue, Lifetime, createContainer } from 'awilix';
 import { scopePerRequest, loadControllers } from 'awilix-koa';
 
+// 通过容器，将services注入，
+// 首先创造一个容器
+const container = createContainer();
+// 将所有的 services 注入到容器里面去
+container.loadModules([__dirname + '/services/*.js'], {
+  formatName: 'camelCase', // 转换大小写
+  registerOptions: {
+    lifetime: Lifetime.SCOPED
+  }
+});
+// 添加容器到 app 中
+app.use(scopePerRequest(container));
+
 // 重写 context 上的 render 方法，对应的就是 ctx.render
 app.context.render = co.wrap(
   render({
@@ -40,19 +53,8 @@ app.use(serve(config.staticDir));
 // 容错机制
 // errorHandle.error(app, logger);
 
-// 首先创造一个容器
-const container = createContainer();
-// 将所有的 services 注入到容器里面去
-container.loadModules([__dirname + '/service/*.js'], {
-  formatName: 'camelCase',
-  registerOptions: {
-    lifetime: Lifetime.SCOPED
-  }
-});
-app.use(scopePerRequest(container));
-
-// 自动装载路由
-app.use(loadControllers('./controllers/*.js'), {
+// 自动装载路由，不直接引入路由，根据 controller 中的装饰器判断具体的路由路径
+app.use(loadControllers(__dirname + '/controllers/*.js'), {
   cwd: __dirname
 });
 

@@ -1,11 +1,11 @@
 const cheerio = require('cheerio');
 import { route, GET } from 'awilix-koa';
-@route('/index')
+@route('/')
 class IndexController {
   constructor({ indexService }) {
     this.indexService = indexService;
   }
-  @route('/index')
+  @route('/')
   @GET()
   async actionIndex(ctx, next) {
     const result = await this.indexService.getData();
@@ -25,4 +25,4 @@ class IndexController {
   }
 }
 
-module.exports = IndexController;
+export default IndexController;
